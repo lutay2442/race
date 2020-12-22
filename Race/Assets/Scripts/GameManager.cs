@@ -13,9 +13,13 @@ namespace Race
         private List<Vehicle> vehicles;
         private List<VehicleOnTrack> vehiclesOnTrack;
 
-        public void Awake()
+        private void Awake()
         {
             vehicles = new List<Vehicle>();
+        }
+        public void AddVehicle(Vehicle vehicle)
+        {
+            vehicles.Add(vehicle);
         }
         public void StartLoop()
         {

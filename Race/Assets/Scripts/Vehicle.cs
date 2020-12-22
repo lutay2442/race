@@ -9,11 +9,12 @@ namespace Race
         /// Шанс прокола шины
         /// </summary>
         public int TireBlowoutChance;
-
+        public Color Color;
         protected static float BasicSpeed = 1f;
 
         public Vehicle(int tireBlowoutChance)
         {
+            Color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
             TireBlowoutChance = tireBlowoutChance;
         }
 

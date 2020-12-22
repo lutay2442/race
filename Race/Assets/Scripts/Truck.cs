@@ -5,10 +5,10 @@
         /// <summary>
         /// Вес груза
         /// </summary>
-        public int CargoWeight;
+        public float CargoWeight;
         public static float SpeedPenaltyPerUnitOfWeight = .5f;
 
-        public Truck(int cargoWeight) : base(1)
+        public Truck(float cargoWeight) : base(1)
         {
             CargoWeight = cargoWeight;
         }
