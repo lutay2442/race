@@ -9,45 +9,50 @@ namespace Race
     {
         [SerializeField] private float refreshRate = 0.1f;
         [SerializeField] private float blowoutTimeout = 1f;
-        [SerializeField] private Racetrack racetrack;
-        private List<Vehicle> vehicles;
-        private List<VehicleOnTrack> vehiclesOnTrack;
+        [SerializeField] private RacetrackBehaviour racetrackBehaviour;
+        private List<VehicleBehaviour> vehicleBehaviours;
 
         private void Awake()
         {
-            vehicles = new List<Vehicle>();
+            vehicleBehaviours = new List<VehicleBehaviour>();
         }
-        public void AddVehicle(Vehicle vehicle)
+        public void AddVehicleBehaviour(VehicleBehaviour behaviour)
         {
-            vehicles.Add(vehicle);
+            vehicleBehaviours.Add(behaviour);
+            for (int i = 0; i < vehicleBehaviours.Count; i++)
+            {
+                var offset = -racetrackBehaviour.Racetrack.RoadWidth / 2 + (i + 1) * racetrackBehaviour.Racetrack.RoadWidth / (vehicleBehaviours.Count);
+                vehicleBehaviours[i].Offset(offset);
+                vehicleBehaviours[i].transform.position = racetrackBehaviour.StartPoint.position;
+            }
         }
         public void StartLoop()
         {
-            vehiclesOnTrack = new List<VehicleOnTrack>();
-            vehicles.ForEach(x => vehiclesOnTrack.Add(new VehicleOnTrack(x)));
+            vehicleBehaviours.ForEach(x => x.DistanceFromStart = 0f);
             StartCoroutine(LoopCoroutine());
         }
         private IEnumerator LoopCoroutine()
         {
             while (true)
             {
-                if (vehiclesOnTrack.Any(x => x.DistanceFromStart < racetrack.Length))
+                if (vehicleBehaviours.Any(x => x.DistanceFromStart < racetrackBehaviour.Racetrack.Length))
                 {
-                    foreach (var vehicleOnTrack in vehiclesOnTrack.Where(x => x.DistanceFromStart < racetrack.Length))
+                    foreach (var behaviour in vehicleBehaviours.Where(x => x.DistanceFromStart < racetrackBehaviour.Racetrack.Length))
                     {
-                        if (vehicleOnTrack.BlowoutTimer > 0)
+                        if (behaviour.BlowoutTimer > 0)
                         {
-                            vehicleOnTrack.BlowoutTimer -= refreshRate;
+                            behaviour.BlowoutTimer -= refreshRate;
                         }
                         else
                         {
-                            if (Random.Range(0, 100) <= vehicleOnTrack.Vehicle.TireBlowoutChance)
+                            if (Random.Range(0, 100) <= behaviour.Vehicle.TireBlowoutChance)
                             {
-                                vehicleOnTrack.BlowoutTimer += blowoutTimeout;
+                                behaviour.BlowoutTimer += blowoutTimeout;
                             }
                             else
                             {
-                                vehicleOnTrack.DistanceFromStart += vehicleOnTrack.Vehicle.GetSpeed();
+                                behaviour.DistanceFromStart += behaviour.Vehicle.GetSpeed();
+                                behaviour.transform.position = racetrackBehaviour.TrackToWorldPosition(behaviour.DistanceFromStart);
                             }
                         }
                     }
@@ -60,8 +65,6 @@ namespace Race
                 yield return new WaitForSeconds(refreshRate);
             }
         }
-        private void EndLoop()
-        {
-        }
+        private void EndLoop() { }
     }
 }

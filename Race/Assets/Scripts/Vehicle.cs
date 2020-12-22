@@ -10,7 +10,7 @@ namespace Race
         /// </summary>
         public int TireBlowoutChance;
         public Color Color;
-        protected static float BasicSpeed = 1f;
+        protected static float BasicSpeed = .1f;
 
         public Vehicle(int tireBlowoutChance)
         {

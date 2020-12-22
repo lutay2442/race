@@ -6,7 +6,7 @@
         /// Вес груза
         /// </summary>
         public float CargoWeight;
-        public static float SpeedPenaltyPerUnitOfWeight = .5f;
+        public static float SpeedPenaltyPerUnitOfWeight = .05f;
 
         public Truck(float cargoWeight) : base(1)
         {

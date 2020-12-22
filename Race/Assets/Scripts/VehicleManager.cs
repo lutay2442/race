@@ -7,18 +7,9 @@ namespace Race
     public class VehicleManager : MonoBehaviour
     {
         [SerializeField] private VehicleEvent onVehicleGenerated;
-        [SerializeField] private Transform startPoint;
         [SerializeField] private VehicleBehaviour carPrefab;
         [SerializeField] private VehicleBehaviour motorcyclePrefab;
         [SerializeField] private VehicleBehaviour truckPrefab;
-
-        [SerializeField] private float roadWidth;
-
-        private List<VehicleBehaviour> vehicleBehaviours;
-        private void Awake()
-        {
-            vehicleBehaviours = new List<VehicleBehaviour>();
-        }
         private void Start()
         {
             GenerateMotorcycle();
@@ -43,16 +34,11 @@ namespace Race
         }
         private void GenerateVehicle(VehicleBehaviour prefab, Vehicle vehicle)
         {
-            var behaviour = Instantiate(prefab, startPoint.localPosition, Quaternion.identity);
+            var behaviour = Instantiate(prefab);
             behaviour.Vehicle = vehicle;
-            vehicleBehaviours.Add(behaviour);
-            for (int i = 0; i < vehicleBehaviours.Count; i++)
-            {
-                vehicleBehaviours[i].Offset(-roadWidth / 2 + (i + 1) * roadWidth / (vehicleBehaviours.Count));
-            }
             if (onVehicleGenerated != null)
             {
-                onVehicleGenerated.Invoke(vehicle);
+                onVehicleGenerated.Invoke(behaviour);
             }
         }
     }

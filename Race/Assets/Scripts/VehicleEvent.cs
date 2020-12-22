@@ -2,5 +2,5 @@
 
 namespace Race
 {
-    [System.Serializable] public class VehicleEvent : UnityEvent<Vehicle> { }
+    [System.Serializable] public class VehicleEvent : UnityEvent<VehicleBehaviour> { }
 }
