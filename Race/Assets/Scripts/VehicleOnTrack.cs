@@ -1,10 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace Race
+﻿namespace Race
 {
-    [System.Serializable]
     public class VehicleOnTrack
     {
         public Vehicle Vehicle;
