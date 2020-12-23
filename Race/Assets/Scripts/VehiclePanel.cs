@@ -9,7 +9,9 @@ namespace Race
         [SerializeField] private Text label;
         [SerializeField] private Toggle toggle;
         [SerializeField] private Slider weightSlider;
+        [SerializeField] private Text weightLabel;
         [SerializeField] private Slider numberOfPeopleSlider;
+        [SerializeField] private Text numberOfPeopleLabel;
         [SerializeField] private Button deleteButton;
 
         public VehicleBehaviour VehicleBehaviour;
@@ -35,6 +37,7 @@ namespace Race
             {
                 var truck = (Truck) VehicleBehaviour.Vehicle;
                 truck.CargoWeight = value;
+                weightLabel.text = $"Вес груза {truck.CargoWeight.ToString("n2")}";
             }
         }
         public void SetNumberOfPeople(float value)
@@ -43,6 +46,7 @@ namespace Race
             {
                 var car = (Car) VehicleBehaviour.Vehicle;
                 car.NumberOfPeople = (int) value;
+                numberOfPeopleLabel.text = $"Людей {car.NumberOfPeople}";
             }
         }
         public void ShowMotoUI()

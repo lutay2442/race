@@ -48,10 +48,10 @@ namespace Race
 
         public string GetRichtext()
         {
-            var placeText = Place == -1 ? string.Empty : Place.ToString();
+            var placeText = Place == -1 ? "Пройдено: " + DistanceFromStart.ToString("n2") : "Место: " + Place.ToString();
             var color = ColorUtility.ToHtmlStringRGB(Vehicle.Color);
             var tireBlowout = BlowoutTimer > 0 ? "Прокол!" : string.Empty;
-            return $"<color=#{color}>{placeText} {Vehicle.GetName()} {tireBlowout}</color>";
+            return $"<color=#{color}>{Vehicle.GetName()} {tireBlowout} {placeText} </color>";
         }
     }
 }

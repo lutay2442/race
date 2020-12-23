@@ -172,7 +172,9 @@ MonoBehaviour:
   label: {fileID: 3903476079870441562}
   toggle: {fileID: 3903476080821169751}
   weightSlider: {fileID: 3903476080257071275}
+  weightLabel: {fileID: 3903476081118272211}
   numberOfPeopleSlider: {fileID: 523795591106619860}
+  numberOfPeopleLabel: {fileID: 4615711808936662439}
   deleteButton: {fileID: 3903476080404904399}
   VehicleBehaviour: {fileID: 0}
 --- !u!1 &3903476079870441556
@@ -1068,7 +1070,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0412\u0435\u0441 \u0433\u0440\u0443\u0437\u0430"
+  m_Text: "\u0412\u0435\u0441 \u0433\u0440\u0443\u0437\u0430 0"
 --- !u!1 &3903476081155715882
 GameObject:
   m_ObjectHideFlags: 0
@@ -1581,7 +1583,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u041B\u044E\u0434\u0435\u0439\n"
+  m_Text: "\u041B\u044E\u0434\u0435\u0439 0\n"
 --- !u!1 &8059167075583583048
 GameObject:
   m_ObjectHideFlags: 0
