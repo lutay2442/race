@@ -37,7 +37,7 @@ namespace Race
         {
             return Vector3.Distance(bottomExitPoint.position, topEnterPoint.position);
         }
-        public Vector3 TrackToWorldPosition(float distanceFromStart)
+        public void SetToWorldPosition(float distanceFromStart, Transform vehicleTransform)
         {
             var straightDistance = StraightDistance();
             var turnDistance = TurnDistance();
@@ -49,29 +49,40 @@ namespace Race
 
             if (progress <= firstSection)
             {
-                return Vector3.Lerp(bottomExitPoint.position, topEnterPoint.position, progress / firstSection);
+                vehicleTransform.rotation = Quaternion.Lerp(bottomExitPoint.rotation, topEnterPoint.rotation, progress / firstSection);
+                vehicleTransform.position = Vector3.Lerp(bottomExitPoint.position, topEnterPoint.position, progress / firstSection);
+                return;
             }
             else if (progress <= secondSecton)
             {
-                return Vector3.Lerp(topEnterPoint.position, topMiddlePoint.position, (progress - firstSection) / (secondSecton - firstSection));
+                vehicleTransform.rotation = Quaternion.Lerp(topEnterPoint.rotation, topMiddlePoint.rotation, progress / firstSection);
+                vehicleTransform.position = Vector3.Lerp(topEnterPoint.position, topMiddlePoint.position, (progress - firstSection) / (secondSecton - firstSection));
+                return;
             }
             else if (progress <= thirdSecton)
             {
-                return Vector3.Lerp(topMiddlePoint.position, topExitPoint.position, (progress - secondSecton) / (thirdSecton - secondSecton));
+                vehicleTransform.rotation = Quaternion.Lerp(topMiddlePoint.rotation, topExitPoint.rotation, progress / firstSection);
+                vehicleTransform.position = Vector3.Lerp(topMiddlePoint.position, topExitPoint.position, (progress - secondSecton) / (thirdSecton - secondSecton));
+                return;
             }
             else if (progress <= firstSection * 2)
             {
-                return Vector3.Lerp(topExitPoint.position, bottomEnterPoint.position, (progress - thirdSecton) / (firstSection * 2));
+                vehicleTransform.rotation = Quaternion.Lerp(topExitPoint.rotation, bottomEnterPoint.rotation, progress / firstSection);
+                vehicleTransform.position = Vector3.Lerp(topExitPoint.position, bottomEnterPoint.position, (progress - thirdSecton) / (firstSection * 2 - thirdSecton));
+                return;
             }
             else if (progress <= secondSecton * 2)
             {
-                return Vector3.Lerp(bottomEnterPoint.position, bottomMiddlePoint.position, (progress - firstSection * 2) / (secondSecton * 2 - firstSection * 2));
+                vehicleTransform.rotation = Quaternion.Lerp(bottomEnterPoint.rotation, bottomMiddlePoint.rotation, progress / firstSection);
+                vehicleTransform.position = Vector3.Lerp(bottomEnterPoint.position, bottomMiddlePoint.position, (progress - firstSection * 2) / (secondSecton * 2 - firstSection * 2));
+                return;
             }
             else if (progress <= thirdSecton * 2)
             {
-                return Vector3.Lerp(bottomMiddlePoint.position, bottomExitPoint.position, (progress - secondSecton * 2) / (thirdSecton * 2 - secondSecton * 2));
+                vehicleTransform.rotation = Quaternion.Lerp(bottomMiddlePoint.rotation, bottomExitPoint.rotation, progress / firstSection);
+                vehicleTransform.position = Vector3.Lerp(bottomMiddlePoint.position, bottomExitPoint.position, (progress - secondSecton * 2) / (thirdSecton * 2 - secondSecton * 2));
+                return;
             }
-            return StartPoint.position;
         }
     }
 }

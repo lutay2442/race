@@ -23,7 +23,7 @@ namespace Race
         /// </summary>
         public float GetSpeed()
         {
-            return BasicSpeed + GetSpeedMod();
+            return Mathf.Max(0.01f, BasicSpeed + GetSpeedMod());
         }
         public abstract string GetName();
 

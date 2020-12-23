@@ -78,7 +78,7 @@ namespace Race
                             else
                             {
                                 behaviour.DistanceFromStart += behaviour.Vehicle.GetSpeed();
-                                behaviour.transform.position = racetrackBehaviour.TrackToWorldPosition(behaviour.DistanceFromStart);
+                                racetrackBehaviour.SetToWorldPosition(behaviour.DistanceFromStart, behaviour.transform);
                                 if (behaviour.DistanceFromStart >= racetrackBehaviour.Racetrack.Length)
                                 {
                                     behaviour.Place = lastPlace;

@@ -6,9 +6,9 @@
         /// Наличие коляски
         /// </summary>
         public bool HasSidecar;
-        protected static float SpeedPenaltyForSidecar = .2f;
+        protected static float SpeedPenaltyForSidecar = -.2f;
 
-        public Motorcycle(bool hasSidecar) : base(5)
+        public Motorcycle(bool hasSidecar) : base(7)
         {
             HasSidecar = hasSidecar;
         }
