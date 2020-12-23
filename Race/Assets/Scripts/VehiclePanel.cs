@@ -14,7 +14,7 @@ namespace Race
         [SerializeField] private Text numberOfPeopleLabel;
         [SerializeField] private Button deleteButton;
 
-        public VehicleBehaviour VehicleBehaviour;
+        [HideInInspector] public VehicleBehaviour VehicleBehaviour;
 
         public void ToggleEdit(bool value)
         {

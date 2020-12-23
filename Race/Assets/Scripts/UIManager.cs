@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Race
@@ -31,9 +32,16 @@ namespace Race
             }
             vehiclePanels.Add(panel);
             panel.VehicleBehaviour = behaviour;
-            panel.OnDelete.AddListener(x => GameManager.DeleteVehicle(x));
+            panel.OnDelete.AddListener(x => { GameManager.DeleteVehicle(x); DeleteVehiclePanel(x); });
         }
-
+        public void DeleteVehiclePanel(VehicleBehaviour behaviour)
+        {
+            var panel = vehiclePanels.FirstOrDefault(x => x.VehicleBehaviour == behaviour);
+            if (panel != null)
+            {
+                vehiclePanels.Remove(panel);
+            }
+        }
         public void EnablePanels()
         {
             vehiclePanels.ForEach(x => x.ToggleEdit(true));
