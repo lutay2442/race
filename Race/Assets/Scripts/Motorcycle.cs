@@ -16,5 +16,10 @@
         {
             return HasSidecar? SpeedPenaltyForSidecar : 0f;
         }
+
+        public override string GetName()
+        {
+            return "Мотоцикл";
+        }
     }
 }

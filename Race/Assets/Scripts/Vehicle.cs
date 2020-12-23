@@ -25,6 +25,7 @@ namespace Race
         {
             return BasicSpeed + GetSpeedMod();
         }
+        public abstract string GetName();
 
         protected abstract float GetSpeedMod();
     }

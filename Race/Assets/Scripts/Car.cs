@@ -16,5 +16,10 @@
         {
             return SpeedPenaltyPerPerson * NumberOfPeople;
         }
+
+        public override string GetName()
+        {
+            return "Легковушка";
+        }
     }
 }

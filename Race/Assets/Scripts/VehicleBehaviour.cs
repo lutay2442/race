@@ -6,6 +6,7 @@ namespace Race
     {
         [HideInInspector] public float DistanceFromStart;
         [HideInInspector] public float BlowoutTimer;
+        [HideInInspector] public int Place = -1;
         [SerializeField] private MeshRenderer meshRenderer;
         [SerializeField] private int materialIndex;
         [SerializeField] private Material materialPrefab;
@@ -43,6 +44,14 @@ namespace Race
         public void Offset(float offset)
         {
             model.localPosition = new Vector3(offset, model.localPosition.y, model.localPosition.z);
+        }
+
+        public string GetRichtext()
+        {
+            var placeText = Place == -1 ? string.Empty : Place.ToString();
+            var color = ColorUtility.ToHtmlStringRGB(Vehicle.Color);
+            var tireBlowout = BlowoutTimer > 0 ? "Прокол!" : string.Empty;
+            return $"<color=#{color}>{placeText} {Vehicle.GetName()} {tireBlowout}</color>";
         }
     }
 }

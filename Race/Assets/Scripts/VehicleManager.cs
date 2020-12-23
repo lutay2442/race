@@ -10,15 +10,6 @@ namespace Race
         [SerializeField] private VehicleBehaviour carPrefab;
         [SerializeField] private VehicleBehaviour motorcyclePrefab;
         [SerializeField] private VehicleBehaviour truckPrefab;
-        private void Start()
-        {
-            GenerateMotorcycle();
-            GenerateCar();
-            GenerateTruck();
-            GenerateTruck();
-            GenerateMotorcycle();
-            GenerateTruck();
-        }
         public void GenerateCar()
         {
             GenerateVehicle(carPrefab, new Car(1));

@@ -16,5 +16,10 @@
         {
             return CargoWeight * SpeedPenaltyPerUnitOfWeight;
         }
+
+        public override string GetName()
+        {
+            return "Грузовик";
+        }
     }
 }

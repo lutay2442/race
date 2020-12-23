@@ -23,6 +23,7 @@ namespace Race
         }
         public void UpdateLength(float length)
         {
+            Racetrack.Length = length;
             var l = (length - (4f * TurnDistance()));
             extendibleSection.localScale = new Vector3(1f, 1f, l);
             bottomSection.localPosition = new Vector3(.5f, -0.2f, -.5f - l / 2f);
@@ -60,7 +61,7 @@ namespace Race
             }
             else if (progress <= firstSection * 2)
             {
-                return Vector3.Lerp(topExitPoint.position, bottomEnterPoint.position, (progress - thirdSecton) / (firstSection * 2 - thirdSecton));
+                return Vector3.Lerp(topExitPoint.position, bottomEnterPoint.position, (progress - thirdSecton) / (firstSection * 2));
             }
             else if (progress <= secondSecton * 2)
             {
